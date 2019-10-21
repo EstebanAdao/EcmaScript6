@@ -1,55 +1,19 @@
-const empleados = [{
-    id: 1,
-    nombre: 'Esteban'
-},
-{
-    id: 2,
-    nombre: 'Karly'
-},
-{
-    id: 3,
-    nombre: 'Juliana'
-}]
+const getUsuarioById = (id, callback) => {
 
-const salarios = [{
-    id: 1,
-    salario: 200000
-},
-{
-    id: 2,
-    salario: 10000
-}]
+    const usuario = {
+        nombre: 'Esteban',
+        id
+    }
 
-const getEmpleado = (id, callback) => {
-
-    const _empleadoDB = empleados.find(x => x.id == id)
-
-    if (!_empleadoDB)
-        callback(`No existe empleado com el id ${id}`)
+    if (id == 20)
+        callback(`El usuário com id ${id} não existe`)
     else
-        callback(null, _empleadoDB)
-}
+        callback(null, usuario)
+};
 
-const getSalario = ({ id, nombre }, callback) => {
-    const _salarioDB = salarios.find(x => x.id == id)
-    // console.log('_salarioDB', _salarioDB)
-    if (!_salarioDB)
-        callback(`No se encontro salario para el empleado ${nombre}`)
-    else
-        callback(null, {
-            nombre: nombre,
-            salario: _salarioDB.salario,
-            id: id
-        })
-}
+getUsuarioById(5, (err, user) => {
 
-getEmpleado(2, (erro, empleado) => {
-    if (erro)
-        return console.log('1', erro)
-
-    getSalario(empleado, (erro, salario) => {
-        if (erro)
-            return console.log(erro)
-        console.log(`El salario de ${salario.nombre} es ${salario.salario}`)
-    })
+    if (err)
+        return console.log(err)
+    console.log('Usuario de Base de Datos', user)
 })
